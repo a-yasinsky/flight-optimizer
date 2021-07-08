@@ -19,13 +19,11 @@ class LocationsAPI(object):
 
     def locations_query(self, term=''):
         params = self.form_query_params(term)
-        response = self.request.get(
+        return self.request.get(
             '/locations/query',
             params = params,
             headers = self.headers
         )
-
-        return response.json()
 
     def get_city_obj(self, term):
         response = self.locations_query(term)
@@ -36,6 +34,8 @@ class LocationsAPI(object):
             for field in fields:
                 _deep_merge(city, city_obj)
             return city_obj
+        else:
+            raise SystemExit('Bad request format for: ' + term)
 
     def locations_radius(self):
         pass

@@ -23,13 +23,11 @@ class AggregationSearchAPI(object):
 
     def price_per_date_query(self, fly_from, fly_to, date_from, date_to):
         params = self.form_query_params(fly_from, fly_to, date_from, date_to)
-        response = self.request.get(
+        return self.request.get(
             '/aggregation_search/price_per_date',
             params = params,
             headers = self.headers
         )
-
-        return response.json()
 
     def price_per_date(self, fly_from, fly_to, date_from, date_to):
         response = self.price_per_date_query(
@@ -38,3 +36,5 @@ class AggregationSearchAPI(object):
         )
         if 'data' in response and len(response['data']) > 0:
             return response['data'][0]['price']
+        else:
+            raise SystemExit('Bad request format for price.')

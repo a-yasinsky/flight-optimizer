@@ -7,4 +7,12 @@ class RequestsAPI(object):
         self.session = requests.Session()
 
     def get(self, url, **kwargs):
-        return self.session.get(self.base_url+url, **kwargs)
+        try:
+            response = self.session.get(self.base_url+url, **kwargs)
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as http_err:
+            raise SystemExit(http_err)
+        except Exception as err:
+            raise SystemExit(err)
+        else:
+            return response.json()
