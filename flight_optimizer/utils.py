@@ -1,8 +1,5 @@
-def _deep_merge(source, destination):
-    for key, value in source.items():
-        if isinstance(value, dict):
-            node = destination.setdefault(key, {})
-            _deep_merge(value, node)
-        else:
-            destination[key] = value
-    return destination
+def _merge_cities(city_to, cities_to):
+    cities = [city_to]
+    for city in cities_to:
+        cities.append(city)
+    return cities

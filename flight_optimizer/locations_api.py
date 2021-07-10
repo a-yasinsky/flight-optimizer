@@ -1,5 +1,3 @@
-from .utils import _deep_merge
-
 class LocationsAPI(object):
     def __init__(self, request, api_key):
         self.request = request
@@ -25,17 +23,25 @@ class LocationsAPI(object):
             headers = self.headers
         )
 
-    def get_city_obj(self, term):
+    def get_location_obj(self, term):
         response = self.locations_query(term)
+        city_obj = {}
         if 'locations' in response and len(response['locations']) > 0:
-            city = response['locations'][0]
-            fields = ['id', 'name', 'location', 'type']
-            city_obj = {}
-            for field in fields:
-                _deep_merge(city, city_obj)
-            return city_obj
+            city_obj = response['locations'][0]
         else:
-            raise SystemExit('Bad request format for: ' + term)
+            print('No data for: ' + term)
+
+        return self.format(city_obj)
+
+    def format(self, city_obj):
+        return {
+                'id': city_obj['id'],
+                'name': city_obj['name'],
+                'location': {
+                        'lat': city_obj['location']['lat'],
+                        'lon': city_obj['location']['lon']
+                    }
+                }
 
     def locations_radius(self):
         pass
