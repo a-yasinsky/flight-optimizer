@@ -24,6 +24,8 @@ class FlightOptimizer(object):
 
     def price_per_km(self, city_from, city_to, date_from, date_to):
         city_obj = self.get_location(city_to)
+        if not city_obj:
+            return {}
         distance = ComputeDistances.calculate_distance(
             (city_from['location']['lat'], city_from['location']['lon']),
             (city_obj['location']['lat'], city_obj['location']['lon'])
@@ -33,8 +35,10 @@ class FlightOptimizer(object):
             city_from['id'], city_obj['id'],
             date_from, date_to
         )
+        if not price:
+            return {}
         city_obj['price'] = price
-        city_obj['price_per_km'] = price / distance
+        city_obj['price_per_km'] = round(price / distance, 2)
         return city_obj
 
     def price_per_km_cities(self, city_from, cities_to, date_from, date_to):
@@ -56,9 +60,10 @@ class FlightOptimizer(object):
                 except Exception as exc:
                     print('Error')
                 else:
-                    cities_objs.append(city_obj)
+                    if city_obj:
+                        cities_objs.append(city_obj)
 
         return cities_objs
 
     def min_price_per_km(self, cities):
-        return min(cities, key=lambda x: x['price_per_km'])
+        return min(cities, key=lambda x: x['price_per_km'], default={})

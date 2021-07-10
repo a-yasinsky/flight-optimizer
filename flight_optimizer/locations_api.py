@@ -34,6 +34,8 @@ class LocationsAPI(object):
         return self.format(city_obj)
 
     def format(self, city_obj):
+        if not city_obj:
+            return {}
         return {
                 'id': city_obj['id'],
                 'name': city_obj['name'],

@@ -37,4 +37,5 @@ class AggregationSearchAPI(object):
         if 'data' in response and len(response['data']) > 0:
             return response['data'][0]['price']
         else:
-            raise SystemExit('Bad request format for price.')
+            print('Bad request format for price.')
+            return 0
