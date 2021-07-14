@@ -1,7 +1,7 @@
 import unittest
-from flight_optimizer.config import Config
-from flight_optimizer.requests_api import RequestsAPI
-from flight_optimizer.locations_api import LocationsAPI
+from src.flight_optimizer.config import Config
+from src.flight_optimizer.requests_api import RequestsAPI
+from src.flight_optimizer.locations_api import LocationsAPI
 
 class LacationAPITestCase(unittest.TestCase):
 
