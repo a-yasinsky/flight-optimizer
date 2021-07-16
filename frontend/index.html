@@ -17,7 +17,7 @@
         <!-- Page content-->
         <div class="container">
             <div class="text-center mt-5">
-                <h1>A Bootstrap 5 Starter Template</h1>
+                <h1>Flight Optimizer</h1>
             </div>
         </div>
         <div class="container">
@@ -25,28 +25,19 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-md-8">
                         <div class="bg-white">
-                            <form>
+                            <form class="flight-optimizer-form">
                                 <div class="mb-3 flightfrom">
                                   <label class="form-label">Flight From</label>
                                   <input type="text" class="form-control" >
                                 </div>
-                                <div class="mb-3 flightsto">
+                                <div class="mb-3">
                                   <label for="validationTags" class="form-label">Flight(s) To</label>
-                                  <select class="form-select" id="validationTags" name="tags[]" multiple data-allow-new="true">
+                                  <select class="form-select flightsto" id="validationTags" name="tags[]" multiple data-allow-new="true">
                                       <option selected disabled hidden value="">Choose a city...</option>
-                                      
                                   </select>
                                   <div class="invalid-feedback">Please select a valid tag.</div>
-
-
-<!--
-                                    <label class="form-label">Flight(s) To</label>
-                                    <div class="flightsto">
-
-                                    </div>
--->
                                 </div>
-                                <button type="submit" class="btn btn-success px-5">Show Flights</button>
+                                <button type="submit" class="btn btn-success px-5">Show best price</button>
                           </form>
                       </div>
                   </div>

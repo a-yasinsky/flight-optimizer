@@ -15,10 +15,14 @@ const ACTIVE_CLASS = "bg-light";
 const VALUE_ATTRIBUTE = "data-value";
 
 class Tags {
+
+  constructor() {
+
+  }
   /**
    * @param {HTMLSelectElement} selectElement
    */
-  constructor(selectElement) {
+  init(selectElement) {
     this.selectElement = selectElement;
     this.selectElement.style.display = "none";
     this.placeholder = this.getPlaceholder();
@@ -48,7 +52,7 @@ class Tags {
    * Attach to all elements matched by the selector
    * @param {string} selector
    */
-  static init(selector = "select[multiple]") {
+  static initDefault(selector = "select[multiple]") {
     let list = document.querySelectorAll(selector);
     for (let i = 0; i < list.length; i++) {
       let el = list[i];
@@ -378,6 +382,7 @@ class Tags {
       opt.setAttribute("selected", "selected");
       this.selectElement.appendChild(opt);
     }
+    this.selectElement.dispatchEvent(new Event('change'));
   }
 
   /**

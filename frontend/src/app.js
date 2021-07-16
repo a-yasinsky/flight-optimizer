@@ -7,9 +7,10 @@ import Tags from './tags';
 
 const store = new Store();
 const template = new Template();
-const view = new View(template, Tags);
+const view = new View(template);
+const tags = new Tags();
 
-const controller = new Controller(store, view);
+const controller = new Controller(store, view, tags);
 
 const setView = () => controller.setView();
 $on(window, 'load', setView);

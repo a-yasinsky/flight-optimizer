@@ -1,31 +1,36 @@
 import {$on, qs} from './helpers';
 
 export default class View {
-  constructor(template, tags) {
+  constructor(template) {
     this.template = template;
-    this.tags = tags;
-    this.$flightfrom = qs('.flightfrom');
-    this.$flightsto = qs('.flightsto');
-    this.$simpleTags = document.getElementById("simple-tag");
-    //this.$buttonAddFlight = qs('.button-add-flight');
+    this.$flightFrom = qs('.flightfrom');
+    this.$flightsTo = qs('.flightsto');
+    this.$form = qs('.flight-optimizer-form');
   }
 
-  showFlightFrom() {
-    this.$flightfrom.innerHTML = this.template.cityFromItem();
+  bindTags(tags) {
+    tags.init(this.$flightsTo);
   }
 
-  showFlightsTo() {
-      this.$flightsto.innerHTML = this.template.citiesToItem();
-  }
-
-  bindTags() {
-    this.tags.init();
-  }
-/*
-  bindAddItem(handler) {
-		$on(this.$buttonAddFlight, 'click', () => {
-			handler(txt);
+  bindChangeFlightFrom(handler) {
+    $on(this.$flightFrom, 'change', ({target}) => {
+			const flightFrom = target.value.trim();
+			if (flightFrom) {
+				handler(flightFrom);
+			}
 		});
-	}
-*/
+  }
+
+  bindChangeFlightsTo(handler) {
+    $on(this.$flightsTo, 'change', () => {
+			  handler();
+		});
+  }
+
+  bindFormSubmit(handler) {
+    $on(this.$form, 'submit', (event) => {
+        event.preventDefault();
+			  handler();
+		});
+  }
 }

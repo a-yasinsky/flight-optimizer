@@ -1,23 +1,28 @@
 export default class Store {
     constructor() {
-      this.flightFrom = {name: ''};
+      this.flightFrom = "";
       this.flightsTo = [];
     }
 
     getFlightFrom() {
-      return this.FlightFrom;
+      return this.flightFrom;
     }
 
     getFlightsTo() {
       return this.flightsTo;
     }
-/*
-    insert(item, callback) {
-      this.flightsTo.push(item);
 
+    updateFlightFrom(flightFrom, callback) {
+      this.flightFrom = flightFrom;
       if (callback) {
         callback();
       }
     }
-*/
+
+    updateFlightsTo(flightsTo, callback) {
+      this.flightsTo = flightsTo;
+      if (callback) {
+        callback();
+      }
+    }
 }

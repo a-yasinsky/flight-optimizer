@@ -1,30 +1,32 @@
 export default class Controller {
-  constructor(store, view) {
+  constructor(store, view, tags) {
     this.store = store;
     this.view = view;
+    this.tags = tags;
 
-    //this.addItem();
-    //view.bindAddItem(this.addItem.bind(this));
+    view.bindChangeFlightFrom(this.changeFlightFrom.bind(this));
+    view.bindChangeFlightsTo(this.changeFlightsTo.bind(this));
+    view.bindFormSubmit(this.formSubmit.bind(this));
   }
 
   setView() {
-    //this.view.showFlightFrom();
-    //this._updateFlights();
-    //this.view.showFlightsTo();
-    this.view.bindTags();
+    this.view.bindTags(this.tags);
   }
-/*
-  addItem(txt="") {
-		this.store.insert({
-			id: Date.now(),
-			txt
-		}, () => {
-			this._updateFlights();
-		});
-	}
 
-  _updateFlights() {
-      this.view.showFlightsTo();
+  changeFlightFrom(flightFrom) {
+    this.store.updateFlightFrom(flightFrom, () => {
+      console.log(this.store.flightFrom);
+    });
   }
-*/
+
+  changeFlightsTo() {
+    let flightsTo = this.tags.getSelectedValues();
+    this.store.updateFlightsTo(flightsTo, () => {
+      console.log(this.store.flightsTo);
+    });
+  }
+
+  formSubmit() {
+    console.log('submit form');
+  }
 }
