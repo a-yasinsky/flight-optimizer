@@ -1,8 +1,9 @@
 export default class Controller {
-  constructor(store, view, tags) {
+  constructor(store, view, tags, request) {
     this.store = store;
     this.view = view;
     this.tags = tags;
+    this.request = request;
 
     view.bindChangeFlightFrom(this.changeFlightFrom.bind(this));
     view.bindChangeFlightsTo(this.changeFlightsTo.bind(this));
@@ -28,5 +29,14 @@ export default class Controller {
 
   formSubmit() {
     console.log('submit form');
+    const params = {
+      flightFrom: this.store.getFlightFrom(),
+      flightsTo: this.store.getFlightsTo()
+    };
+    this.request.setParams(params);
+    this.request.sendRequest()
+      .then(function(response){
+			     console.log(response);
+			});
   }
 }
