@@ -27,7 +27,6 @@ def create_app(config_object):
 
         city_from = body.get('flightFrom', "")
         cities_to = body.get('flightsTo', [])
-        print(city_from, cities_to)
         today = datetime.date.today()
         tomorrow = today + datetime.timedelta(days=1)
 
