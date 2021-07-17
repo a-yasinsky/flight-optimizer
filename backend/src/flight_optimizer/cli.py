@@ -25,7 +25,9 @@ def cli(city_from, city_to, cities_to):
 
     city_min_price = optimizer.min_price_per_km(cities)
 
-    click.echo(city_min_price)
+    click.echo("Best price per km is " +
+                str(city_min_price['price_per_km']) + "$ for: " +
+                city_from + " - " +city_min_price['name'])
 
 if __name__ == '__main__':
     cli()

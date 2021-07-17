@@ -29,14 +29,23 @@ export default class Controller {
 
   formSubmit() {
     console.log('submit form');
+    const that = this;
     const params = {
       flightFrom: this.store.getFlightFrom(),
       flightsTo: this.store.getFlightsTo()
     };
     this.request.setParams(params);
     this.request.sendRequest()
-      .then(function(response){
-			     console.log(response);
-			});
+      .then(function(json){
+			     console.log(json);
+           that.view.displayResult(json);
+           that.view.buttonToNormal();
+			})
+      .catch( err => {
+            console.log(err);
+            //if (err instanceof TypeError)
+            that.view.displayErorr(err.message);
+            that.view.buttonToNormal();
+        });
   }
 }

@@ -352,6 +352,7 @@ class Tags {
     }
     let lastItem = items[items.length - 1];
     this.removeItem(lastItem.getAttribute(VALUE_ATTRIBUTE));
+    this.selectElement.dispatchEvent(new Event('change'));
   }
 
   /**
