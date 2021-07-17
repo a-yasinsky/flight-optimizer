@@ -64,7 +64,8 @@ to upgrade the code:
 npm run build
 ```
 3. Open a browser window and navigate to the index.html file
+4. To add city to possible destination press Enter
 
 ### Possible error
 
-Depends on local environment you may want to change port number at `RequestManager` constructor. 
+Depends on local environment you may want to change port number at `RequestManager` constructor.
