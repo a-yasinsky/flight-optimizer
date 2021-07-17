@@ -17,7 +17,7 @@ pip install --editable .
 
 - [Flask-CORS](https://flask-cors.readthedocs.io/en/latest/#) is the extension we'll use to handle cross origin requests from our frontend server.
 
-- [Click](https://click.palletsprojects.com/en/8.0.x/) is an extension that handles SQLAlchemy database migrations for Flask applications using Alembic.
+- [Click](https://click.palletsprojects.com/en/8.0.x/) is an package for creating beautiful command line interfaces.
 
 ## Running the CLI
 
